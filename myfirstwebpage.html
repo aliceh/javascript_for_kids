@@ -1,0 +1,45 @@
+<html>
+<head>
+  <title>
+    Caramel's web page
+  </title>
+</head>
+<body>
+
+<h1><font color="Red">Welcome</font> <font color="Orange">to</font><font color="Yellow"> Caramel's</font><font color="Green"> web</font><font color="Blue"> page</font><font color="Purple">!</font></h1>
+<img src="caramel.jpg" height="300" width="450">
+
+<script type="text/javascript">
+
+var str=window.prompt("What is the phrase you want to see in rainbow colors?");
+
+for (j = 1; j <6 ; j++)
+{
+document.write("<h"+j+">")
+//var str = "Caramel";
+var n = str.length;
+var res = str.split("");
+var i=0;
+while (i<n)
+{
+if (i%6==0)
+   {document.write('<font color="Red">'+res[i]+'</font>');}
+if (i%6==1)
+    {document.write('<font color="Orange">'+res[i]+'</font>');}
+if (i%6==2)
+    {document.write('<font color="Yellow">'+res[i]+'</font>');}
+if (i%6==3)
+    {document.write('<font color="Green">'+res[i]+'</font>');}
+if (i%6==4)
+    {document.write('<font color="Blue">'+res[i]+'</font>');}
+if (i%6==5)
+    {document.write('<font color="Purple">'+res[i]+'</font>');}
+i++;
+}
+document.write("</h"+j+">")
+}
+
+</script>
+</body>
+
+</html>
