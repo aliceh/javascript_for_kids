@@ -1,0 +1,17 @@
+<html>
+<script>
+var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+for (i=0;i<alphabet.length;i++)
+{document.write('<input type="button" id='+alphabet[i]+' onclick="return guess(this);" value="'+alphabet[i]+'" />')}
+
+function guess(button)
+{
+  if (button.value===" ")
+     {alert("You already tried this letter!");}
+  else {
+    button.value="  ";
+  }
+}
+</script>
+</html>
