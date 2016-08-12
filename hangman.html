@@ -1,0 +1,94 @@
+<html>
+<head>
+<style type="text/css">
+.button {
+    color: green;
+}
+</style>
+<title>
+Hangman
+</title>
+</head>
+
+<body>
+<script type = "text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+//Creating alphabet buttons
+var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+for (i=0;i<alphabet.length;i++)
+{document.write('<input type="button" id='+alphabet[i]+' onclick="return guess(this);" value="'+alphabet[i]+'" style=" font-size: 30px; height:50px; width:50px; background-color:#cc0; color:#fff;" />')}
+
+//Picking a word at random
+var words="adult,advice,arrangement,attempt,border,breeze,brick,calm,canal,cast,chose,claws,coach,cookies,damage,depth,discussion,doll,donkey,essential,exist".split(",");
+var ind=Math.floor(Math.random()*100+1)
+ind=ind%words.length
+var rand_word=words[ind]
+var letters_to_guess=rand_word.split("")
+//document.write(letters_to_guess)
+
+//Drawing the hangman board
+var board = document.createElement("PRE");
+board.innerHTML = drawBoard();
+
+var unguessed_letters=letters_to_guess.length;
+var remaining_guesses=Math.floor(1.5*letters_to_guess.length);
+
+document.write('<p id="p1" style=" font-size: 30px;">Remaining attempts: '+remaining_guesses+'</p>');
+document.write('<p id="p2">Unguessed letters: '+unguessed_letters+'</p>');
+
+
+
+//guesses.innerHTML = write_remaining_guesses();
+
+
+function guess(button)
+{
+  if (button.value===" ")
+     {alert("You already tried this letter!");}
+  else
+     {
+       remaining_guesses-=1;
+       write_remaining_guesses();
+       for (i=0;i<letters_to_guess.length;i++)
+       {if (letters_to_guess[i]==button.value)
+           {document.getElementById("guess_"+i).innerHTML = button.value ;
+            unguessed_letters=unguessed_letters-1;
+            write_unguessed_letters();
+            }
+       if (unguessed_letters==0)
+          {document.write("<h1> You won!!! </h1>")}
+       }
+       button.value=" ";}
+  write_win_or_lose();
+}
+
+function drawBoard() {
+    var boardContents = "";
+    var i;
+    document.write("<br><h1>");
+    for (i=0;i<letters_to_guess.length;i++)
+    {document.write("<bdi id=guess_"+i+">_ </bdi>");}
+    document.write("</h1></br>");
+  }
+
+function write_unguessed_letters(){
+    document.getElementById("p2").innerHTML = 'Unguessed letters: '+unguessed_letters;
+  }
+
+function write_remaining_guesses(){
+  document.getElementById("p1").innerHTML = 'Remaining attempts: '+remaining_guesses;
+
+}
+
+function write_win_or_lose()
+{
+  if (remaining_guesses==0)
+     { if (unguessed_letters>0)
+       {document.write('<h1>You lose! :-( </h1> <p> The word was "'+rand_word+'".</h1></p>');}
+    }
+}
+
+</script>
+</body>
+</html>
